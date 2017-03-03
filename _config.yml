@@ -1,0 +1,16 @@
+# Name of your blog (this will show up at the top of your page and in the RSS feed)
+name: The Science of the Deal
+
+url: https://thescienceofthedeal.com
+
+#twitter:
+#  username: [username here]
+
+permalink: /:title
+
+# seems that this plugin picks up other .html files under bower components
+#gems:
+#- jekyll-sitemap
+
+gems:
+  - jekyll-seo-tag
