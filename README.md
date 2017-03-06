@@ -1,5 +1,6 @@
-# thescienceofthedeal
-The Science of The Deal
+#  The Science of The Deal Website
+
+This site is modified by checking out this source repository from GitHub, modifying, and "pushing" ba  
 
 ### First time setup:
 Make sure you have RubyGems installed: https://rubygems.org/pages/download
@@ -14,9 +15,14 @@ Make sure you have RubyGems installed: https://rubygems.org/pages/download
 Troubleshooting: Issues installing 'nokogiri' on OSX: make sure you have xcode command line tools installed and license agreed to
 
 ### Local development
+Run the following to spin up jekyll live compiler
+
     bundle exec jekyll serve
     
+Modify code and instantly see changes on your local machine(typically at http://localhost:4000/ ) 
      
+### Publishing live
+    git commit .
 
 ### Other tools
 
