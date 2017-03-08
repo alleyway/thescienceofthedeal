@@ -1,0 +1,35 @@
+---
+layout: base
+active: home
+title: Google Chart Test
+description:
+logoclass: hidden
+---
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="/google_chart_test.js"></script>
+
+<div class="container-fluid intro text-center">
+    <h1>The Science of the Deal</h1>
+</div>
+
+<div class="container">
+
+    <div class="row" style="padding-top: 15px;">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>Science of the Deal</h3>
+            <hr class="separator">
+
+            <div id="dashboard_div">
+                Zoom<br />
+                <input id="lastDay" type="button" value="Last Day" />
+                <input id="lastWeek" type="button" value="Last Week" />
+                <input id="lastMonth" type="button" value="Last Month" />
+                <div id="chart_div"></div>
+                <div id="control_div"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
