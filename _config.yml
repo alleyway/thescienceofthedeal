@@ -6,7 +6,7 @@ url: https://thescienceofthedeal.com
 #twitter:
 #  username: [username here]
 
-permalink: /:title
+permalink: /:categories/:title/
 
 # seems that this plugin picks up other .html files under bower components
 #gems:

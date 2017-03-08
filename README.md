@@ -20,9 +20,13 @@ Run the following to spin up jekyll live compiler
     bundle exec jekyll serve
     
 Modify code and instantly see changes on your local machine(typically at http://localhost:4000/ ) 
+
+(JetBrains IDE was used for development but is not essential)     
      
 ### Publishing live
-    git commit .
+    
+    git commit . -m "my commit message"
+    git push origin
 
 ### Other tools
 
