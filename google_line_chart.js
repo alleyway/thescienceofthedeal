@@ -159,9 +159,9 @@ function handleQueryResponse(response) {
                 chartOptions: {
                     height: 50,
                     // omit width, since we set this in CSS
-                    chartArea: {
-                        width: '75%' // this should be the same as the ChartRangeFilter
-                    },
+                    // chartArea: {
+                    //     width: '100%' // this should be the same as the ChartRangeFilter
+                    // },
                     annotations: {
                         textStyle: {
                             color: 'red',
@@ -177,25 +177,25 @@ function handleQueryResponse(response) {
     dashboard.bind([control], [chart]);
     dashboard.draw(data);
 
-    function zoomLastWeek() {
+    function zoomLastMonth() {
         var range = data.getColumnRange(0);
         control.setState({
             range: {
-                start: new Date(range.max.getFullYear(), range.max.getMonth(), range.max.getDate() - 7),
+                start: new Date(range.max.getFullYear(), range.max.getMonth()-1, range.max.getDate()),
                 end: range.max
             }
         });
         control.draw();
     }
 
-    function zoomLastMonth() {
+    function zoomLastYear() {
         // zoom here sets the month back 1, which can have odd effects when the last month has more days than the previous month
         // eg: if the last day is March 31, then zooming last month will give a range of March 3 - March 31, as this sets the start date to February 31, which doesn't exist
         // you can tweak this to make it function differently if you want
         var range = data.getColumnRange(0);
         control.setState({
             range: {
-                start: new Date(range.max.getFullYear(), range.max.getMonth() - 1, range.max.getDate()),
+                start: new Date(range.max.getFullYear() - 1, range.max.getMonth(), range.max.getDate()),
                 end: range.max
             }
         });
@@ -206,16 +206,16 @@ function handleQueryResponse(response) {
         google.visualization.events.removeListener(runOnce);
 
         if (document.addEventListener) {
-            document.querySelector('#lastWeek').addEventListener('click', zoomLastWeek);
             document.querySelector('#lastMonth').addEventListener('click', zoomLastMonth);
+            document.querySelector('#lastYear').addEventListener('click', zoomLastYear);
         }
         else if (document.attachEvent) {
-            document.querySelector('#lastWeek').attachEvent('onclick', zoomLastWeek);
             document.querySelector('#lastMonth').attachEvent('onclick', zoomLastMonth);
+            document.querySelector('#lastYear').attachEvent('onclick', zoomLastYear);
         }
         else {
-            document.querySelector('#lastWeek').onclick = zoomLastWeek;
             document.querySelector('#lastMonth').onclick = zoomLastMonth;
+            document.querySelector('#lastYear').onclick = zoomLastYear;
         }
     });
 }
