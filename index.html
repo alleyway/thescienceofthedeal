@@ -1,17 +1,14 @@
 ---
 layout: base
-active: home
+active: google_line_chart
 title: Google Line Chart
 description:
-logoclass: hidden
+logoclass: visibile
 ---
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="/google_line_chart.js"></script>
 
-<div class="container-fluid intro text-center">
-    <h1>Science of the Deal</h1>
-</div>
 
 <div class="container">
 
@@ -21,15 +18,14 @@ logoclass: hidden
             <hr class="separator">
 
             <div id="dashboard_div">
-                Zoom<br />
-                <input id="lastWeek" type="button" value="Last Week" />
-                <input id="lastMonth" type="button" value="Last Month" />
+                Controls<br/>
+                <input id="lastWeek" type="button" value="Last Week"/>
+                <input id="lastMonth" type="button" value="Last Month"/>
                 <div id="control_div" style="margin-bottom: 100px"></div>
                 <div id="chart_div"></div>
 
             </div>
-            </div>
         </div>
     </div>
-
 </div>
+

@@ -3,13 +3,23 @@
 This site is modified by checking out this source repository from GitHub, modifying, and "pushing" ba  
 
 ### First time setup:
+Make sure you have Ruby (2.3.+) installed
+
+    ruby --version
+
+Install/Update Ruby from here: https://www.ruby-lang.org/en/documentation/installation/ 
+
+Install npm: 
+
+
 Make sure you have RubyGems installed: https://rubygems.org/pages/download
 
     gem install bundler
     git clone git@github.com:alleywayconsulting/thescienceofthedeal.git
+    cd thescienceofthedeal
     bundle install
-    
-    gem install bower
+
+    npm install -g bower
     bower install
     
 Troubleshooting: Issues installing 'nokogiri' on OSX: make sure you have xcode command line tools installed and license agreed to

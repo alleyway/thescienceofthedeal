@@ -34,10 +34,10 @@ function handleQueryResponse(response) {
 
         var date = responseData.getValue(j, 0);
         var score = responseData.getValue(j, 1);
-        var tooltip = "<b>" + date.toLocaleDateString() +"</b><br/><i>" + responseData.getValue(j, 2)
-            + "</i><br/>" + responseData.getValue(j, 3);
+        var tooltip = "<div class='point-hover'><i>" + date.toLocaleDateString() +"</i><br/><b>" + responseData.getValue(j, 2)
+            + "</b><br/>" + responseData.getValue(j, 3) + "</div>";
 
-        //var tickValue = responseData.getValue(j, 2);
+        // var tickValue = responseData.getValue(j, 2);
         // var tickMark = {v: date, f: tickValue};
         // ticks[j] = tickMark;
 

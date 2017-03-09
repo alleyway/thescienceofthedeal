@@ -1,21 +1,17 @@
 ---
 layout: base
-active: home
+active: plotly_line_chart
 title: The Science of the Deal
 description:
-logoclass: hidden
+logoclass: visibile
 ---
 
-
-<div class="container-fluid intro text-center">
-    <h1>The Science of the Deal</h1>
-</div>
 
 <div class="container">
 
     <div class="row" style="padding-top: 15px;">
         <div class="col-md-8 col-md-offset-2">
-            <h3>Science of the Deal</h3>
+            <h3>Plot.ly Line Chart</h3>
             <hr class="separator">
 
             <script src="/figure_1.js"></script>
@@ -38,17 +34,16 @@ logoclass: hidden
                     hoverInfo = document.getElementById('hoverinfo');
 
 
-                myPlot.on('plotly_hover', function(data){
-                    var infotext = data.points.map(function(d){
-                        return (d.data.name+': x= '+d.x+', y= '+d.y.toPrecision(3));
+                myPlot.on('plotly_hover', function (data) {
+                    var infotext = data.points.map(function (d) {
+                        return (d.data.name + ': x= ' + d.x + ', y= ' + d.y.toPrecision(3) + " title and/or description content could be placed here");
                     });
 
                     hoverInfo.innerHTML = infotext.join('');
                 });
-//            myPlot.on('plotly_unhover', function(data){
-//                    hoverInfo.innerHTML = '';
-//                });
-
+                //            myPlot.on('plotly_unhover', function(data){
+                //                    hoverInfo.innerHTML = '';
+                //                });
 
 
             </script>
