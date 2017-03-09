@@ -3,11 +3,16 @@
 This site is modified by checking out this source repository from GitHub, modifying, and "pushing" ba  
 
 ### First time setup:
-Make sure you have Ruby (2.3.+) installed
+Make sure you have Ruby (2.4.+) installed
 
     ruby --version
 
 Install/Update Ruby from here: https://www.ruby-lang.org/en/documentation/installation/ 
+
+TROUBLESHOOTING: Is the terminal still using the old ruby version? Try installing RVM(Ruby Version Manager) with this:
+
+    \curl -L https://get.rvm.io | bash -s stable
+    rvm install ruby-2.4.0
 
 Install npm: 
 
