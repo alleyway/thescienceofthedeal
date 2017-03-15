@@ -34,8 +34,13 @@ function handleQueryResponse(response) {
 
         var date = responseData.getValue(j, 0);
         var score = responseData.getValue(j, 1);
-        var tooltip = "<div class='point-hover'><i>" + date.toLocaleDateString() +"</i><br/><b>" + responseData.getValue(j, 2)
-            + "</b><br/>" + responseData.getValue(j, 3) + "</div>";
+        //var tooltip =  date.toLocaleDateString() + " - " + responseData.getValue(j, 2);
+
+        var tooltip = "<div class='point-hover'><b>" + responseData.getValue(j, 2)
+            + "</b><br/><font size='smaller'><i>" + date.toLocaleDateString() + "</i> (click for details)</font></div>";
+
+        // var tooltip = "<div class='point-hover'><i>" + date.toLocaleDateString() +"</i><br/><b>" + responseData.getValue(j, 2)
+        //     + "</b><br/>" + responseData.getValue(j, 3) + "</div>";
 
         // var tickValue = responseData.getValue(j, 2);
         // var tickMark = {v: date, f: tickValue};
@@ -52,16 +57,21 @@ function handleQueryResponse(response) {
         chartType: 'LineChart',
         containerId: 'chart_div',
         options: {
+            interpolateNulls: true,
+            backgroundColor: '#FEFEFE',
             height: 400,
             // omit width, since we set this in CSS
             chartArea: {
-                width: '75%',
+                width: '100%',
                 top: 10,
                 left: 100
 
             },
             dataOpacity: 0.8, // opacity of points
-            crosshair: {trigger: 'selection'},
+            crosshair: {
+                trigger: 'selection',
+                color: '#B95352'
+            },
             pointSize: 4,
             hAxis: {
                 //title: "Date of Speech",
@@ -79,12 +89,11 @@ function handleQueryResponse(response) {
                 // ticks: ticks
             },
             tooltip: {
-                trigger: 'selection',
+                trigger: 'hover',
                 isHtml: true,
-                ignoreBounds: true
+                ignoreBounds: false
             },
             vAxis: {
-                title: "Linguistic Score",
                 gridlines: {
                     color: '#d7d7d7', count: 9
                 },
@@ -95,13 +104,13 @@ function handleQueryResponse(response) {
                 }
             },
             legend: {
-                position: "none"
+                position: "right"
             },
             min: -10,
             max: 10,
             explorer: {
                 axis: 'horizontal',
-                actions: ['dragToPan', 'rightClickToReset'],
+                actions: ['dragToZoom', 'rightClickToReset'],
                 keepInBounds: false // set to false to re-enable panning
             },
             annotations: {

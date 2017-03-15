@@ -1,7 +1,15 @@
 .point-hover {
 
-    background-color: rgba(255, 198, 9, 0.37);
-    max-width: 200px;
+    background-color: rgba(239, 221, 123, 0.37);
+    /*max-width: 200px;*/
+    white-space: nowrap;
     padding: 8px;
-
 }
+
+body {
+    background-color: #FEFEFE;
+}
+
+/*.google-visualization-tooltip {*/
+    /*border-radius: 8px !important;*/
+/*}*/
