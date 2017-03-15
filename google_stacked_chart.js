@@ -3,7 +3,7 @@ google.charts.setOnLoadCallback(queryData);
 
 function queryData() {
     var query = new google.visualization.Query(
-        "https://docs.google.com/spreadsheets/d/1QG0spehL2ofBCEtkZLcpZwkIczHHd0w9vaifp3lzHa8/gviz/tq?gid=1511124293&headers=1&range=A:E"
+        "https://docs.google.com/spreadsheets/d/1QG0spehL2ofBCEtkZLcpZwkIczHHd0w9vaifp3lzHa8/gviz/tq?gid=1511124293&headers=1&range=A:K"
     );
 
     query.send(handleQueryResponse);
@@ -21,30 +21,40 @@ function handleQueryResponse(response) {
     var responseData = response.getDataTable();
 
     var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Speech');
-    data.addColumn('number', 'Hyperbole');
-    data.addColumn('number', 'Distraction');
-    data.addColumn('number', 'Ego-Fanning');
-    //data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
-    //data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+    // data.addColumn('date', 'Date');
+    data.addColumn('string', 'title');
+    data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
 
     var colCount = responseData.getNumberOfColumns();
+
+    for (var i = 2; i< colCount; i++) {
+        data.addColumn('number', responseData.getColumnLabel(i));
+    }
+
+
+    //data.addColumn('number', 'Distraction');
+    //data.addColumn('number', 'Ego-Fanning');
+
+    //data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+
+
     var rowCount = responseData.getNumberOfRows();
 
     var ticks = [];
     for (var j = 0; j < rowCount; j++) {
 
         var date = responseData.getValue(j, 0);
-        var one = responseData.getValue(j, 1);
+        var title = responseData.getValue(j, 1);
         var two = responseData.getValue(j, 2);
         var three = responseData.getValue(j, 3);
+        var four = responseData.getValue(j, 4);
 
-        var speech = responseData.getValue(j, 4) + " - " + date.toLocaleString();
+        //var speech = responseData.getValue(j, 4); // + " - " + date.toLocaleString();
 
         //var tooltip =  date.toLocaleDateString() + " - " + responseData.getValue(j, 2);
 
-        var tooltip = "<div class='point-hover'><b>" + responseData.getValue(j, 2)
-            + "</b><br/><font size='smaller'><i>" + date.toLocaleDateString() + "</i> (click for details)</font></div>";
+        // var tooltip = "<div class='point-hover'><b>" + responseData.getValue(j, 2)
+        //     + "</b><br/><font size='smaller'><i>" + date.toLocaleDateString() + "</i> (click for details)</font></div>";
 
         // var tooltip = "<div class='point-hover'><i>" + date.toLocaleDateString() +"</i><br/><b>" + responseData.getValue(j, 2)
         //     + "</b><br/>" + responseData.getValue(j, 3) + "</div>";
@@ -53,7 +63,16 @@ function handleQueryResponse(response) {
         // var tickMark = {v: date, f: tickValue};
         // ticks[j] = tickMark;
 
-        data.addRow([speech, one, two, three]);
+        //data.addRow([date, title, two, three, four]);
+        var row = [title, title];
+        var total = 0;
+        for (var i = 2; i< colCount; i++) {
+            var value = responseData.getValue(j, i);
+            row[i] = value;
+            total += value;
+        }
+        if (total>0) //simple check to weed out incomplete data
+            data.addRow(row);
     }
 
     // var csv = google.visualization.dataTableToCsv(data);
@@ -61,19 +80,23 @@ function handleQueryResponse(response) {
 
 
     var options = {
-        isStacked: true,
+        isStacked: 'true',
         backgroundColor: '#FEFEFE',
-        colors:['#C8CFC5','#9FB8C3', '#B95352', '#EFDD7B'],
-        height: 800,
+        colors:['#C8CFC5', '#ffbb78','#9FB8C3', '#B95352', '#EFDD7B', "#e377c2", "#98df8a", "#ff9896", "#6D81F5"],
+        height: 900,
+        orientation: 'vertical',
+        bar: {
+            groupWidth: '6'
+        },
         legend: {
-            position: 'in',
+            position: 'top',
             maxLines: 3},
         // omit width, since we set this in CSS
         chartArea: {
-            width: '100%',
-            top: 50,
-            left: 200
+            width: '80%',
 
+            top: 150,
+            left: 350
         },
         dataOpacity: 0.8, // opacity of points
         crosshair: {
@@ -87,11 +110,11 @@ function handleQueryResponse(response) {
                 color: '#333', count: 10
             },
             textStyle: {
-                fontSize: '14'
+                fontSize: '11'
             },
             titleTextStyle: {
                 color: '#000000',
-                fontSize: '18',
+                fontSize: '12',
                 italic: false
             },
             slantedText: true,
@@ -110,11 +133,15 @@ function handleQueryResponse(response) {
             gridlines: {
                 color: '#d7d7d7', count: 9
             },
+            textStyle: {
+                fontSize: '10'
+            },
             titleTextStyle: {
                 color: '#000000',
-                fontSize: '18',
+                fontSize: '10',
                 italic: false
-            }
+            },
+            maxTextLines: 2
         },
         explorer: {
             axis: 'horizontal',
