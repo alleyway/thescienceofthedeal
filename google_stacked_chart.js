@@ -3,7 +3,7 @@ google.charts.setOnLoadCallback(queryData);
 
 function queryData() {
     var query = new google.visualization.Query(
-        "https://docs.google.com/spreadsheets/d/1QG0spehL2ofBCEtkZLcpZwkIczHHd0w9vaifp3lzHa8/gviz/tq?gid=1511124293&headers=1&range=A:K"
+        "https://docs.google.com/spreadsheets/d/1QG0spehL2ofBCEtkZLcpZwkIczHHd0w9vaifp3lzHa8/gviz/tq?gid=1511124293&headers=2&range=A:K"
     );
 
     query.send(handleQueryResponse);
@@ -23,31 +23,27 @@ function handleQueryResponse(response) {
     var data = new google.visualization.DataTable();
     // data.addColumn('date', 'Date');
     data.addColumn('string', 'title');
-    data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
 
     var colCount = responseData.getNumberOfColumns();
 
     for (var i = 2; i< colCount; i++) {
-        data.addColumn('number', responseData.getColumnLabel(i));
+        //NOTE: tooltips in stacked charts follow the column of the data
+        data.addColumn('number', responseData.getColumnLabel(i).split("$")[1]);
+        data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
     }
 
-
-    //data.addColumn('number', 'Distraction');
-    //data.addColumn('number', 'Ego-Fanning');
-
-    //data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
-
+    var pvaData = new google.visualization.DataTable();
+    pvaData.addColumn('string', 'Date');
+    pvaData.addColumn('number', 'PVA Score');
+    pvaData.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
 
     var rowCount = responseData.getNumberOfRows();
 
     var ticks = [];
-    for (var j = 0; j < rowCount; j++) {
+    for (var j = 1; j < rowCount; j++) {
 
         var date = responseData.getValue(j, 0);
         var title = responseData.getValue(j, 1);
-        var two = responseData.getValue(j, 2);
-        var three = responseData.getValue(j, 3);
-        var four = responseData.getValue(j, 4);
 
         //var speech = responseData.getValue(j, 4); // + " - " + date.toLocaleString();
 
@@ -64,15 +60,29 @@ function handleQueryResponse(response) {
         // ticks[j] = tickMark;
 
         //data.addRow([date, title, two, three, four]);
-        var row = [title, title];
+
+        var pvaRow = [moment(date).format("MMM D, YYYY")];
+
+        var row = [moment(date).format("MMM D, YYYY")];
         var total = 0;
-        for (var i = 2; i< colCount; i++) {
-            var value = responseData.getValue(j, i);
+        for (var i = 1, k = 2; k < colCount; i += 2, k++) {
+            var value = responseData.getValue(j,k);
             row[i] = value;
             total += value;
+            row[i+1] = "<div class='point-hover'> <i>" + responseData.getValue(j,1) + "</i><br/>"
+                + "<b>" + data.getColumnLabel(i) + ": " + value + "</b><br/>"
+            + "" + responseData.getColumnLabel(k).split("$")[0] + "</div>";
+
+            pvaRow[1] = total;
+
+            pvaRow[2] = "<div class='point-hover'> <i>" + responseData.getValue(j,1) + "</i><br/>"
+                + "<b>PVA Score: "  + total + "</b></div>";
         }
-        if (total>0) //simple check to weed out incomplete data
+        if (total > 0) {//simple check to weed out incomplete data
             data.addRow(row);
+            pvaData.addRow(pvaRow);
+        }
+
     }
 
     // var csv = google.visualization.dataTableToCsv(data);
@@ -83,8 +93,8 @@ function handleQueryResponse(response) {
         isStacked: 'true',
         backgroundColor: '#FEFEFE',
         colors:['#C8CFC5', '#ffbb78','#9FB8C3', '#B95352', '#EFDD7B', "#e377c2", "#98df8a", "#ff9896", "#6D81F5"],
-        height: 900,
-        orientation: 'vertical',
+        height: 530,
+        orientation: 'horizontal',
         bar: {
             groupWidth: '6'
         },
@@ -95,8 +105,8 @@ function handleQueryResponse(response) {
         chartArea: {
             width: '80%',
 
-            top: 150,
-            left: 350
+            top: 100,
+            left: 50
         },
         dataOpacity: 0.8, // opacity of points
         crosshair: {
@@ -126,7 +136,7 @@ function handleQueryResponse(response) {
         },
         tooltip: {
             trigger: 'hover',
-            isHtml: false,
+            isHtml: true,
             ignoreBounds: false
         },
         vAxis: {
@@ -161,34 +171,87 @@ function handleQueryResponse(response) {
                 // The transparency of the text.
                 opacity: 0.8
             }
+        }
+
+    };
+
+
+    var pvaOptions = {
+        backgroundColor: '#FEFEFE',
+        colors:['#C8CFC5', '#ffbb78','#9FB8C3', '#B95352', '#EFDD7B', "#e377c2", "#98df8a", "#ff9896", "#6D81F5"],
+        height: 300,
+        legend: {
+            position: 'top',
+            maxLines: 3},
+        // omit width, since we set this in CSS
+        chartArea: {
+            width: '80%',
+            top: 50,
+            left: 50
+        },
+        dataOpacity: 0.8, // opacity of points
+        crosshair: {
+            trigger: 'selection',
+            color: '#B95352'
+        },
+        pointSize: 4,
+        hAxis: {
+            //title: "Date of Speech",
+            gridlines: {
+                color: '#333', count: 10
+            },
+            textStyle: {
+                fontSize: '11'
+            },
+            titleTextStyle: {
+                color: '#000000',
+                fontSize: '12',
+                italic: false
+            },
+            slantedText: true,
+            slantedTextAngle: "45",
+            maxTextLines: 2,
+            maxAlternation: 1
             // ,
-            // boxStyle: {
-            //     // Color of the box outline.
-            //     stroke: '#888',
-            //     // Thickness of the box outline.
-            //     strokeWidth: 1,
-            //     // x-radius of the corner curvature.
-            //     rx: 10,
-            //     // y-radius of the corner curvature.
-            //     ry: 10,
-            //     // Attributes for linear gradient fill.
-            //     gradient: {
-            //         // Start color for gradient.
-            //         color1: '#fbf6a7',
-            //         // Finish color for gradient.
-            //         color2: '#33b679',
-            //         // Where on the boundary to start and
-            //         // end the color1/color2 gradient,
-            //         // relative to the upper left corner
-            //         // of the boundary.
-            //         x1: '0%', y1: '0%',
-            //         x2: '100%', y2: '100%',
-            //         // If true, the boundary for x1,
-            //         // y1, x2, and y2 is the box. If
-            //         // false, it's the entire chart.
-            //         useObjectBoundingBoxUnits: true
-            //     }
-            // }
+            // ticks: ticks
+        },
+        tooltip: {
+            trigger: 'hover',
+            isHtml: true,
+            ignoreBounds: false
+        },
+        vAxis: {
+            gridlines: {
+                color: '#d7d7d7', count: 9
+            },
+            textStyle: {
+                fontSize: '10'
+            },
+            titleTextStyle: {
+                color: '#000000',
+                fontSize: '10',
+                italic: false
+            },
+            maxTextLines: 2
+        },
+        // explorer: {
+        //     axis: 'horizontal',
+        //     actions: ['dragToZoom', 'rightClickToReset'],
+        //     keepInBounds: false // set to false to re-enable panning
+        // },
+        annotations: {
+            textStyle: {
+                fontName: 'Arial',
+                fontSize: 13,
+                bold: false,
+                italic: false,
+                // The color of the text.
+                color: '#333',
+                // The color of the text outline.
+                auraColor: '#fff',
+                // The transparency of the text.
+                opacity: 0.8
+            }
         }
 
     };
@@ -196,6 +259,9 @@ function handleQueryResponse(response) {
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
     chart.draw(data, options);
+
+    var chartPva = new google.visualization.LineChart(document.getElementById('chart2_div'));
+    chartPva.draw(pvaData, pvaOptions);
 
 
 }
