@@ -69,7 +69,7 @@ function handleQueryResponse(response) {
             var value = responseData.getValue(j,k);
             row[i] = value;
             total += value;
-            row[i+1] = "<div class='point-hover'> <i>" + responseData.getValue(j,1) + "</i><br/>"
+            row[i+1] = "<div class='point-hover'> <i>" + moment(date).format("MMM D, YYYY") + "<br/>" + title + "</i><br/>"
                 + "<b>" + data.getColumnLabel(i) + ": " + value + "</b><br/>"
             + "" + responseData.getColumnLabel(k).split("$")[0] + "</div>";
 
