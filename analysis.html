@@ -5,36 +5,34 @@ permalink: /analysis
 description: Analysis description goes here
 ---
 
+<section class="container content-section">
 
-<div class="container-fluid intro">
     <div class="row">
-        <div class="col-md-offset-2 col-md-6 text-left">
-            <h1>Science of the Deal Blog</h1>
-        </div>
-    </div>
-</div>
 
-<div class="container">
+        <div class="col-md-10 col-md-offset-1">
 
-</div>
+            <h1>Archives of All Our Analysis</h1>
 
-<div class="container-fluid blog-list">
-    <div class="row">
-        <div class="col-md-offset-2 col-md-5">
-
-            {% for post in site.posts limit: 20 %}
-            <div class="blogContent" itemscope itemtype="http://schema.org/Article">
-                <a href="{{ site.prefix }}{{ post.url }}" itemprop="url"><h2 class="blogTitle" itemprop="name">{{
-                    post.title }}</h2></a>
+            {% for post in site.posts %}
+            <div itemscope itemtype="http://schema.org/Article">
+                <a href="{{ site.prefix }}{{ post.url }}" itemprop="url"><h4 itemprop="name">{{ post.title }}</h4></a>
                 <article>
-                    <p>{% if post.author %} By {{ post.author }} - {% endif %} <span class="meta article-date" itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</span> {% if post.meta %} • {{ post.meta }}{% endif %}</p>
-                    <p itemprop="description">{{ post.description }} <br><a href="{{ post.url }}"> Read more...</a></p>
+                    <p class="article-meta">{% if post.author %} By {{ post.author }} - {% endif %} <span
+                            class="meta article-date"
+                            itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</span> {% if post.meta %} • {{
+                        post.meta }}{% endif %}</p>
+                    <!--<p itemprop="description">{{ post.description }} <br><a href="{{ post.url }}"> Read more...</a></p>-->
                 </article>
             </div>
             {% endfor %}
         </div>
-        <div class="col-md-3">
-            {% include side_well.html %}
-        </div>
+
+        <!--<div class="col-md-1">-->
+            <!--{% include side_well.html %}-->
+        <!--</div>-->
+
     </div>
-</div>
+
+</section>
+
+

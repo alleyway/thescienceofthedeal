@@ -111,8 +111,9 @@ a:focus {
 }
 .navbar-custom .navbar-toggle {
     color: black;
-    background-color: rgba(135, 135, 135, 0.5);
+    background-color: rgba(135, 135, 135, 0.0);
     font-size: 12px;
+    border: 1px solid #3e3e3e;
 }
 .navbar-custom .navbar-toggle:focus,
 .navbar-custom .navbar-toggle:active {
@@ -120,7 +121,7 @@ a:focus {
 }
 .navbar-custom .navbar-brand {
     font-weight: bold;
-    font-size: 32px;
+    font-size: 26px;
     color: #B95352;
 }
 .navbar-custom .navbar-brand:focus {
@@ -171,6 +172,9 @@ a:focus {
         padding: 0;
         background: #c18f09;
         border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .navbar-custom .navbar-brand {
+        font-size: 32px;
     }
 }
 .intro {
@@ -274,7 +278,7 @@ a:focus {
     }
 }
 .content-section {
-    padding-top: 100px;
+    padding-top: 50px;
 }
 .download-section {
     width: 100%;
@@ -294,7 +298,7 @@ a:focus {
 }
 @media (min-width: 767px) {
     .content-section {
-        padding-top: 250px;
+        padding-top: 150px;
     }
     .download-section {
         padding: 100px 0;
@@ -463,4 +467,21 @@ body {
     background-color: #fafafa;
     background-image: none;
     min-height: 300px;
+}
+
+
+.bio img {
+    margin-top: 12px;
+    margin-bottom:12px;
+}
+
+.bio p {
+    color: #6C6969;
+    font-size: 16px;
+    line-height: 18px;
+}
+.bio-name {
+    color: #6C6969;
+    font-size: 24px;
+    font-weight: bold;
 }
