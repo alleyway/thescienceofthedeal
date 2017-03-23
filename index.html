@@ -27,7 +27,6 @@ description:
             <div id="chart_div"></div>
         </div>
     </div>
-
     <div class="row" style="padding-top: 50px;">
         <div class="col-md-10 col-md-offset-1 well chart-container">
 
@@ -35,7 +34,9 @@ description:
 
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 chart-subheader">
-                    Method: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar sed erat at commodo. Quisque posuere vitae magna tempor scelerisque. Etiam aliquam tincidunt nisi, non varius ante efficitur sit amet.
+                    Method: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar sed erat at commodo.
+                    Quisque posuere vitae magna tempor scelerisque. Etiam aliquam tincidunt nisi, non varius ante
+                    efficitur sit amet.
                 </div>
             </div>
 
@@ -44,5 +45,39 @@ description:
         </div>
     </div>
 
+    <h2 class="text-center" style="margin-top: 50px; margin-bottom: 70px;">Recent Analysis</h2>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            {% for post in site.posts limit: 3 %}
+            <div itemscope itemtype="http://schema.org/Article">
+                <a href="{{ site.prefix }}{{ post.url }}" itemprop="url"><h4 itemprop="name">{{
+                    post.title }}</h4></a>
+                <article>
+                    <p class="article-meta">{% if post.author %} By {{ post.author }} - {% endif %} <span
+                            class="meta article-date"
+                            itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</span> {% if post.meta %} • {{
+                        post.meta }}{% endif %}</p>
+                    <!--<p itemprop="description">{{ post.description }} <br><a href="{{ post.url }}"> Read more...</a></p>-->
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-4 well newsletter-container text-center">
+            Newsletter Sign-Up
+        </div>
+    </div>
+
+    <h2 class="text-center" style="margin-top: 50px; margin-bottom: 70px;">Team</h2>
+
+
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+
+        </div>
+        <div class="col-md-5">
+
+        </div>
+    </div>
 
 </div>
