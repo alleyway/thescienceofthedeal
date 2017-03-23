@@ -91,7 +91,7 @@ function handleQueryResponse(response) {
 
     var options = {
         isStacked: 'true',
-        backgroundColor: '#FEFEFE',
+        backgroundColor: 'transparent',
         colors:['#C8CFC5', '#ffbb78','#9FB8C3', '#B95352', '#EFDD7B', "#e377c2", "#98df8a", "#ff9896", "#6D81F5"],
         height: 530,
         orientation: 'horizontal',
@@ -103,8 +103,7 @@ function handleQueryResponse(response) {
             maxLines: 3},
         // omit width, since we set this in CSS
         chartArea: {
-            width: '80%',
-
+            width: '93%',
             top: 100,
             left: 50
         },
@@ -177,7 +176,7 @@ function handleQueryResponse(response) {
 
 
     var pvaOptions = {
-        backgroundColor: '#FEFEFE',
+        backgroundColor: 'transparent',
         colors:['#C8CFC5', '#ffbb78','#9FB8C3', '#B95352', '#EFDD7B', "#e377c2", "#98df8a", "#ff9896", "#6D81F5"],
         height: 300,
         legend: {
@@ -185,7 +184,7 @@ function handleQueryResponse(response) {
             maxLines: 3},
         // omit width, since we set this in CSS
         chartArea: {
-            width: '80%',
+            width: '93%',
             top: 50,
             left: 50
         },
