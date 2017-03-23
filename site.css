@@ -328,7 +328,10 @@ ul.banner-social-buttons {
     }
 }
 footer {
-    padding: 50px 0;
+    padding: 24px 0;
+    background-color: #353530;
+    color: #C8CFC5;
+    font-family: 'andadaregular';
 }
 footer p {
     margin: 0;
@@ -411,6 +414,9 @@ body {
     padding: 8px;
 }
 
+.debug {
+    background-color: rgba(255, 16, 22, 0.3);
+}
 
 /*.google-visualization-tooltip {*/
     /*border-radius: 8px !important;*/
