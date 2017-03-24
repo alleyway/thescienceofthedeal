@@ -4,35 +4,32 @@
 
 {% include header.html %}
 
-<div class="blog-list-container" itemscope itemtype="http://schema.org/Article">
-    <div class="container-fluid intro">
-        &nbsp;
-    </div>
+<section class="container content-section" itemscope itemtype="http://schema.org/Article">
 
-    <div class="container-fluid">
+    <div class="row">
 
-        <div class="row">
-            <div class="col-md-offset-2 col-md-5">
-                <h3 itemprop="name">{{ page.title }}</h3>
-                <header class="post-header">
+        <div class="col-md-7 col-md-offset-1">
 
-                    <p class="meta" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} •
-                        <span itemprop="author">{{page.author }}</span>{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
-                </header>
-                <div class="postContainer">
+            <h3 itemprop="name">{{ page.title }}</h3>
+            <header class="post-header">
 
-                    <article class="post-content" itemprop="articleBody">
-                        {{ content }}
-                    </article>
-                </div>
+                <p class="meta" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} •
+                    <span itemprop="author">{{page.author }}</span>{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+            </header>
+            <div class="postContainer">
+
+                <article class="post-content" itemprop="articleBody">
+                    {{ content }}
+                </article>
             </div>
-            <div class="col-md-3">
 
-                {% include side_well.html %}
+        </div>
+        <div class="col-md-3">
 
-            </div>
+            {% include side_well.html %}
+
         </div>
     </div>
-</div>
+</section>
 
 {% include footer.html %}
