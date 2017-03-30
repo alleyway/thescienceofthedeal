@@ -40,7 +40,7 @@ function handleQueryResponse(response) {
     var rowCount = responseData.getNumberOfRows();
 
     var ticks = [];
-    for (var j = 1; j < rowCount; j++) {
+    for (var j = 0; j < rowCount; j++) {
 
         var date = responseData.getValue(j, 0);
         var title = responseData.getValue(j, 1);
