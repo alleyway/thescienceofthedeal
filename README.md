@@ -30,7 +30,7 @@ Make sure you have RubyGems installed: https://rubygems.org/pages/download
 Troubleshooting: Issues installing 'nokogiri' on OSX: make sure you have xcode command line tools installed and license agreed to
 
 ### Local development
-Run the following to spin up jekyll live compiler
+Run the following in the check-out directory to spin up jekyll live compiler
 
     bundle exec jekyll serve
     
