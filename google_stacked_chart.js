@@ -1,6 +1,10 @@
 google.charts.load('45', {packages: ['corechart']});
 google.charts.setOnLoadCallback(queryData);
 
+var data;
+
+var options;
+
 function queryData() {
     var query = new google.visualization.Query(
         "https://docs.google.com/spreadsheets/d/1QG0spehL2ofBCEtkZLcpZwkIczHHd0w9vaifp3lzHa8/gviz/tq?gid=1511124293&headers=2&range=A:K"
@@ -20,7 +24,7 @@ function handleQueryResponse(response) {
     }
     var responseData = response.getDataTable();
 
-    var data = new google.visualization.DataTable();
+    data = new google.visualization.DataTable();
     // data.addColumn('date', 'Date');
     data.addColumn('string', 'title');
 
@@ -32,10 +36,10 @@ function handleQueryResponse(response) {
         data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
     }
 
-    var pvaData = new google.visualization.DataTable();
-    pvaData.addColumn('string', 'Date');
-    pvaData.addColumn('number', 'PVA Score');
-    pvaData.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+    // var pvaData = new google.visualization.DataTable();
+    // pvaData.addColumn('string', 'Date');
+    // pvaData.addColumn('number', 'PVA Score');
+    // pvaData.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
 
     var rowCount = responseData.getNumberOfRows();
 
@@ -61,7 +65,7 @@ function handleQueryResponse(response) {
 
         //data.addRow([date, title, two, three, four]);
 
-        var pvaRow = [moment(date).format("MMM D, YYYY")];
+        //var pvaRow = [moment(date).format("MMM D, YYYY")];
 
         var row = [moment(date).format("MMM D, YYYY")];
         var total = 0;
@@ -73,14 +77,14 @@ function handleQueryResponse(response) {
                 + "<b>" + data.getColumnLabel(i) + ": " + value + "</b><br/>"
             + "" + responseData.getColumnLabel(k).split("$")[0] + "</div>";
 
-            pvaRow[1] = total;
-
-            pvaRow[2] = "<div class='point-hover'> <i>" + responseData.getValue(j,1) + "</i><br/>"
-                + "<b>PVA Score: "  + total + "</b></div>";
+            // pvaRow[1] = total;
+            //
+            // pvaRow[2] = "<div class='point-hover'> <i>" + responseData.getValue(j,1) + "</i><br/>"
+            //     + "<b>PVA Score: "  + total + "</b></div>";
         }
         if (total > 0) {//simple check to weed out incomplete data
             data.addRow(row);
-            pvaData.addRow(pvaRow);
+            // pvaData.addRow(pvaRow);
         }
 
     }
@@ -89,7 +93,7 @@ function handleQueryResponse(response) {
     // console.log(csv);
 
 
-    var options = {
+    options = {
         isStacked: 'true',
         backgroundColor: 'transparent',
         colors:['#C8CFC5', '#ffbb78','#9FB8C3', '#B95352', '#EFDD7B', "#e377c2", "#98df8a", "#ff9896", "#6D81F5"],
@@ -175,92 +179,111 @@ function handleQueryResponse(response) {
     };
 
 
-    var pvaOptions = {
-        backgroundColor: 'transparent',
-        colors:['#C8CFC5', '#ffbb78','#9FB8C3', '#B95352', '#EFDD7B', "#e377c2", "#98df8a", "#ff9896", "#6D81F5"],
-        height: 300,
-        legend: {
-            position: 'top',
-            maxLines: 3},
-        // omit width, since we set this in CSS
-        chartArea: {
-            width: '93%',
-            top: 50,
-            left: 50
-        },
-        dataOpacity: 0.8, // opacity of points
-        crosshair: {
-            trigger: 'selection',
-            color: '#B95352'
-        },
-        pointSize: 4,
-        hAxis: {
-            //title: "Date of Speech",
-            gridlines: {
-                color: '#333', count: 10
-            },
-            textStyle: {
-                fontSize: '11'
-            },
-            titleTextStyle: {
-                color: '#000000',
-                fontSize: '12',
-                italic: false
-            },
-            slantedText: true,
-            slantedTextAngle: "45",
-            maxTextLines: 2,
-            maxAlternation: 1
-            // ,
-            // ticks: ticks
-        },
-        tooltip: {
-            trigger: 'hover',
-            isHtml: true,
-            ignoreBounds: false
-        },
-        vAxis: {
-            gridlines: {
-                color: '#d7d7d7', count: 9
-            },
-            textStyle: {
-                fontSize: '10'
-            },
-            titleTextStyle: {
-                color: '#000000',
-                fontSize: '10',
-                italic: false
-            },
-            maxTextLines: 2
-        },
-        // explorer: {
-        //     axis: 'horizontal',
-        //     actions: ['dragToZoom', 'rightClickToReset'],
-        //     keepInBounds: false // set to false to re-enable panning
-        // },
-        annotations: {
-            textStyle: {
-                fontName: 'Arial',
-                fontSize: 13,
-                bold: false,
-                italic: false,
-                // The color of the text.
-                color: '#333',
-                // The color of the text outline.
-                auraColor: '#fff',
-                // The transparency of the text.
-                opacity: 0.8
-            }
-        }
+    // var pvaOptions = {
+    //     backgroundColor: 'transparent',
+    //     colors:['#C8CFC5', '#ffbb78','#9FB8C3', '#B95352', '#EFDD7B', "#e377c2", "#98df8a", "#ff9896", "#6D81F5"],
+    //     height: 300,
+    //     legend: {
+    //         position: 'top',
+    //         maxLines: 3},
+    //     // omit width, since we set this in CSS
+    //     chartArea: {
+    //         width: '93%',
+    //         top: 50,
+    //         left: 50
+    //     },
+    //     dataOpacity: 0.8, // opacity of points
+    //     crosshair: {
+    //         trigger: 'selection',
+    //         color: '#B95352'
+    //     },
+    //     pointSize: 4,
+    //     hAxis: {
+    //         //title: "Date of Speech",
+    //         gridlines: {
+    //             color: '#333', count: 10
+    //         },
+    //         textStyle: {
+    //             fontSize: '11'
+    //         },
+    //         titleTextStyle: {
+    //             color: '#000000',
+    //             fontSize: '12',
+    //             italic: false
+    //         },
+    //         slantedText: true,
+    //         slantedTextAngle: "45",
+    //         maxTextLines: 2,
+    //         maxAlternation: 1
+    //         // ,
+    //         // ticks: ticks
+    //     },
+    //     tooltip: {
+    //         trigger: 'hover',
+    //         isHtml: true,
+    //         ignoreBounds: false
+    //     },
+    //     vAxis: {
+    //         gridlines: {
+    //             color: '#d7d7d7', count: 9
+    //         },
+    //         textStyle: {
+    //             fontSize: '10'
+    //         },
+    //         titleTextStyle: {
+    //             color: '#000000',
+    //             fontSize: '10',
+    //             italic: false
+    //         },
+    //         maxTextLines: 2
+    //     },
+    //     // explorer: {
+    //     //     axis: 'horizontal',
+    //     //     actions: ['dragToZoom', 'rightClickToReset'],
+    //     //     keepInBounds: false // set to false to re-enable panning
+    //     // },
+    //     annotations: {
+    //         textStyle: {
+    //             fontName: 'Arial',
+    //             fontSize: 13,
+    //             bold: false,
+    //             italic: false,
+    //             // The color of the text.
+    //             color: '#333',
+    //             // The color of the text outline.
+    //             auraColor: '#fff',
+    //             // The transparency of the text.
+    //             opacity: 0.8
+    //         }
+    //     }
+    //
+    // };
 
-    };
 
+    updateChart();
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-
-    var chartPva = new google.visualization.LineChart(document.getElementById('chart2_div'));
-    chartPva.draw(pvaData, pvaOptions);
+    // var chartPva = new google.visualization.LineChart(document.getElementById('chart2_div'));
+    // chartPva.draw(pvaData, pvaOptions);
 
 
 }
+
+
+function updateChart(){
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+
+
+$(window).resize(function() {
+    if(this.resizeTO) clearTimeout(this.resizeTO);
+    this.resizeTO = setTimeout(function() {
+        $(this).trigger('resizeEnd');
+    }, 500);
+});
+
+
+$(window).on('resizeEnd', function() {
+    $('chart_div').empty();
+    updateChart();
+});
