@@ -1,27 +1,24 @@
 ---
-layout: default
-title: Analysis
+layout: default_with_header
+title: Full Analysis Archives
 permalink: /analysis
 description: Analysis description goes here
 ---
 
-<section class="container content-section">
+<section class="container">
 
     <div class="row">
 
         <div class="col-md-10 col-md-offset-1">
 
-            <h1>Archives of All Our Analysis</h1>
-
             {% for post in site.posts %}
-            <div itemscope itemtype="http://schema.org/Article">
-                <a href="{{ site.prefix }}{{ post.url }}" itemprop="url"><h4 itemprop="name">{{ post.title }}</h4></a>
+            <div class="article-listing" itemscope itemtype="http://schema.org/Article">
+                <a href="{{ site.prefix }}{{ post.url }}" itemprop="url"><h4 itemprop="name">{{
+                    post.title }}</h4></a>
                 <article>
-                    <p class="article-meta">{% if post.author %} By {{ post.author }} - {% endif %} <span
-                            class="meta article-date"
-                            itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</span> {% if post.meta %} • {{
-                        post.meta }}{% endif %}</p>
-                    <!--<p itemprop="description">{{ post.description }} <br><a href="{{ post.url }}"> Read more...</a></p>-->
+                    <p itemprop="description">{{ post.description }}</p>
+                    <span class="article-meta"><span class="meta article-date" itemprop="datePublished">{{ post.date | date: "%B %-d, %Y" }}</span>
+                        {% if post.author %} • By <span class="post-author">{{ post.author }}</span> {% endif %}</span>
                 </article>
             </div>
             {% endfor %}

@@ -8,13 +8,12 @@
 
     <div class="row">
 
-        <div class="col-md-7 col-md-offset-1">
+        <div class="col-md-10 col-md-offset-1">
 
-            <h3 itemprop="name">{{ page.title }}</h3>
+            <h4 itemprop="name">{{ page.title }}</h4>
+
             <header class="post-header">
-
-                <p class="meta" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} •
-                    <span itemprop="author">{{page.author }}</span>{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+                {% if page.author %}<span class="post-author-article">{{ page.author }} </span> {% endif %}<span class="article-meta" style="text-transform: uppercase"><span class="meta" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</span></span>
             </header>
             <div class="postContainer">
 
@@ -25,11 +24,11 @@
 
         </div>
         
-        <div class="col-md-3">
+        <!--<div class="col-md-3">-->
 
-            {% include side_well.html %}
+            <!--{% include side_well.html %}-->
 
-        </div>
+        <!--</div>-->
     </div>
 </section>
 

@@ -28,45 +28,94 @@ description:
         </div>
     </div>
     <!--<div class="row" style="padding-top: 50px;">-->
-        <!--<div class="col-md-10 col-md-offset-1 well chart-container">-->
+    <!--<div class="col-md-10 col-md-offset-1 well chart-container">-->
 
-            <!--<h3 class="text-center">Use of Donald Trump’s Rhetoric Over Time</h3>-->
+    <!--<h3 class="text-center">Use of Donald Trump’s Rhetoric Over Time</h3>-->
 
-            <!--<div class="row">-->
-                <!--<div class="col-md-8 col-md-offset-2 chart-subheader">-->
-                    <!--Method: PUT THE REAL METHOD HERE!!-->
-                <!--</div>-->
-            <!--</div>-->
-
-
-            <!--<div id="chart2_div"></div>-->
-        <!--</div>-->
+    <!--<div class="row">-->
+    <!--<div class="col-md-8 col-md-offset-2 chart-subheader">-->
+    <!--Method: PUT THE REAL METHOD HERE!!-->
+    <!--</div>-->
     <!--</div>-->
 
-    <h2 class="text-center" style="margin-top: 50px; margin-bottom: 70px;">Recent Analysis</h2>
+
+    <!--<div id="chart2_div"></div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+
+    {% for post in site.posts limit: 1 %}
+
+    <div class="row" style="margin-top: 90px; margin-bottom: 30px;">
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="top_line"></div>
+            <div class="line_container">
+                <h2 class="body_title">Latest Analysis</h2>
+                <div class="body_title_line"></div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+
+        <div itemscope itemtype="http://schema.org/Article">
+
+            {% if post.image %}
+            <div class="col-md-7 col-md-push-3 col-md-offset-1">
+                <img src="{{ post.image }}" class="img-responsive" style="margin-bottom: 8px;">
+            </div>
+            {% endif %}
+
+            <div class="col-md-3 col-md-pull-7 ">
+                <a href="{{ site.prefix }}{{ post.url }}" itemprop="url"><h4 itemprop="name">{{post.title }}</h4></a>
+                <article>
+                    <p itemprop="description">{{ post.description }}</p>
+                    <span class="article-meta"><span class="meta article-date" itemprop="datePublished">{{ post.date | date: "%B %-d, %Y" }}</span>
+                        {% if post.author %} • By <span class="post-author">{{ post.author }}</span> {% endif %}</span>
+
+                </article>
+            </div>
+
+
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="row" style="margin-top: 90px; margin-bottom: 30px;">
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="top_line"></div>
+            <div class="line_container">
+                <h2 class="body_title">Recent Analysis</h2>
+                <div class="body_title_line"></div>
+            </div>
+
+
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            {% for post in site.posts limit: 3 %}
-            <div itemscope itemtype="http://schema.org/Article">
+            {% for post in site.posts offset:1 limit:3 %}
+            <div class="article-listing" itemscope itemtype="http://schema.org/Article">
                 <a href="{{ site.prefix }}{{ post.url }}" itemprop="url"><h4 itemprop="name">{{
                     post.title }}</h4></a>
                 <article>
-                    <p class="article-meta">{% if post.author %} By {{ post.author }} - {% endif %} <span
-                            class="meta article-date"
-                            itemprop="datePublished">{{ post.date | date: "%b %-d, %Y" }}</span> {% if post.meta %} • {{
-                        post.meta }}{% endif %}</p>
-                    <!--<p itemprop="description">{{ post.description }} <br><a href="{{ post.url }}"> Read more...</a></p>-->
+                    <p itemprop="description">{{ post.description }}</p>
+                    <span class="article-meta"><span class="meta article-date" itemprop="datePublished">{{ post.date | date: "%B %-d, %Y" }}</span>
+                        {% if post.author %} • By <span class="post-author">{{ post.author }}</span> {% endif %}</span>
                 </article>
             </div>
             {% endfor %}
         </div>
 
         <!--<div class="col-md-4 well newsletter-container text-center">-->
-            <!--Newsletter Sign-Up<br/>-->
-            <!--(future iteration)-->
+        <!--Newsletter Sign-Up<br/>-->
+        <!--(future iteration)-->
         <!--</div>-->
     </div>
 
 
-    </div>
 </div>
