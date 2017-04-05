@@ -1,0 +1,39 @@
+---
+
+---
+
+{% include header.html %}
+
+<section class="container">
+    <div class="row" style="margin-top: 90px; margin-bottom: 0px;">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="top_line"></div>
+            <div class="line_container">
+                <h2 class="body_title">{{page.title}}</h2>
+                <div class="body_title_line"></div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<section class="container">
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+            {% unless site.categories.[page.category] | size > 0 %}
+            <p><strong>Coming soon!</strong></p><p> As we add articles, they'll appear here.</p>
+            {% endunless %}
+
+            {% for post in site.categories.[page.category] %}
+
+            {% include article_listing.html %}
+
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% include footer.html %}

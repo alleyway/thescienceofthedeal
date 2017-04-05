@@ -1,0 +1,9 @@
+<div class="article-listing" itemscope itemtype="http://schema.org/Article">
+    <a href="{{ site.prefix }}{{ post.url }}" itemprop="url"><h4 itemprop="name">{{
+        post.title }}</h4></a>
+    <article>
+        <p itemprop="description">{{ post.description }}</p>
+        <span class="article-meta"><span class="meta article-date" itemprop="datePublished">{{ post.date | date: "%B %-d, %Y" }}</span>
+                        {% if post.author %} • By <span class="post-author">{{ post.author }}</span> {% endif %}</span>
+    </article>
+</div>

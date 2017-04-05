@@ -1,6 +1,5 @@
 ---
 layout: default
-active: home
 title: Home
 description:
 
@@ -69,13 +68,7 @@ description:
             {% endif %}
 
             <div class="col-md-3 col-md-pull-7 ">
-                <a href="{{ site.prefix }}{{ post.url }}" itemprop="url"><h4 itemprop="name">{{post.title }}</h4></a>
-                <article>
-                    <p itemprop="description">{{ post.description }}</p>
-                    <span class="article-meta"><span class="meta article-date" itemprop="datePublished">{{ post.date | date: "%B %-d, %Y" }}</span>
-                        {% if post.author %} • By <span class="post-author">{{ post.author }}</span> {% endif %}</span>
-
-                </article>
+                {% include article_listing.html %}
             </div>
 
 
@@ -99,15 +92,7 @@ description:
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             {% for post in site.posts offset:1 limit:3 %}
-            <div class="article-listing" itemscope itemtype="http://schema.org/Article">
-                <a href="{{ site.prefix }}{{ post.url }}" itemprop="url"><h4 itemprop="name">{{
-                    post.title }}</h4></a>
-                <article>
-                    <p itemprop="description">{{ post.description }}</p>
-                    <span class="article-meta"><span class="meta article-date" itemprop="datePublished">{{ post.date | date: "%B %-d, %Y" }}</span>
-                        {% if post.author %} • By <span class="post-author">{{ post.author }}</span> {% endif %}</span>
-                </article>
-            </div>
+            {% include article_listing.html %}
             {% endfor %}
         </div>
 
