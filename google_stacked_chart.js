@@ -7,7 +7,8 @@ var options;
 
 function queryData() {
     var query = new google.visualization.Query(
-        "https://docs.google.com/spreadsheets/d/1QG0spehL2ofBCEtkZLcpZwkIczHHd0w9vaifp3lzHa8/gviz/tq?gid=1511124293&headers=2&range=A:K"
+        /*"https://docs.google.com/spreadsheets/d/1QG0spehL2ofBCEtkZLcpZwkIczHHd0w9vaifp3lzHa8/gviz/tq?gid=1511124293&headers=2&range=A:K"*/
+        "https://docs.google.com/spreadsheets/d/1gof3Gy7DKKGuMAVSFN2NFMuQ8UTJovGsRzeXfTSOSV4/edit?ts=5a158dba#gid=935543198&headers=2&range=C:L"
     );
 
     query.send(handleQueryResponse);
