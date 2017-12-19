@@ -156,7 +156,8 @@ function handleQueryResponse(response) {
                 fontSize: '10',
                 italic: false
             },
-            maxTextLines: 2
+            maxTextLines: 2,
+            format:'#%'
         },
         explorer: {
             axis: 'horizontal',
