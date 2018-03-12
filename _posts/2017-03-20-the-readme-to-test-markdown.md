@@ -5,6 +5,7 @@ title: the readme
 author: Michael
 image: /img/article_image_placeholder.png
 published: false
+featured: false
 description: the new description
 ---
 
