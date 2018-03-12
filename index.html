@@ -17,7 +17,10 @@ description:
     
     <p style="font-size:130%;"><b><a href="interactive_viz">Click here</a></b> to see an interactive visualization of our Performative Analysis is President Trump's speeches.</p>
     
-    {% for post in site.posts limit: 1 %}
+    
+    {% assign featured_posts = (site.posts|where:"featured","true") %}
+    {% for post in site.featured_posts limit: 1 %}
+    <!--{% for post in site.posts limit: 1 %}-->
 
     <div class="row" style="margin-top: 90px; margin-bottom: 30px;">
         <div class="col-md-10 col-md-offset-1">
