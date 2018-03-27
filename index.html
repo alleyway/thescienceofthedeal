@@ -21,12 +21,12 @@ description:
             
             <p style="margin-bottom: 30px; font-family: Andada;"><i>The Science of the Deal</i> is a project of the Initiative on Religion, Politics and Conflict  at the University of Virginia that seeks to foster engaged research on questions at the intersection of political leadership, discourse, and values.  </p>
 
-            <div class="top_line" style="margin-bottom: 8px;"></div>
+            <!--<div class="top_line" style="margin-bottom: 8px;"></div>-->
             <div class="top_line"></div>
-            <!--<div class="line_container">
-                <h2 class="body_title">Latest Analysis</h2>
+            <div class="line_container">
+                <h2 class="body_title">Featured Analysis</h2>
                 <div class="body_title_line"></div>
-            </div>-->
+            </div>
 
 
         </div>
@@ -65,7 +65,8 @@ description:
 
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            {% for post in site.posts limit:10 %}
+            {% assign recent_posts = (site.posts|where:"featured","false") %}
+            {% for post in recent_posts limit:10 %}
             {% include article_listing.html %}
             {% endfor %}
         </div>
