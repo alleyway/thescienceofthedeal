@@ -1,0 +1,29 @@
+---
+
+---
+
+{% include header.html %}
+
+<section class="container content-section" itemscope itemtype="http://schema.org/Article">
+
+    <div class="row">
+
+        <div class="col-md-10 col-md-offset-1">
+            <div class="postContainer">
+
+                <article class="post-content" itemprop="articleBody">
+                    {{ content }}
+                </article>
+            </div>
+
+        </div>
+        
+        <!--<div class="col-md-3">-->
+
+            <!--{% include side_well.html %}-->
+
+        <!--</div>-->
+    </div>
+</section>
+
+{% include footer.html %}
